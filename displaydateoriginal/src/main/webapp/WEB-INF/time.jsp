@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Time</title>
 </head>
 <body>
 <p><c:out value="${time}"></c:out></p>
+<script type="text/javascript" src="/js/time.js"></script>
 </body>
 </html>

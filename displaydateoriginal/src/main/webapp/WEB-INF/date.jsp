@@ -9,5 +9,6 @@
 </head>
 <body>
 <p><c:out value="${date}"></c:out></p>
+<script type="text/javascript" src="/js/date.js"></script>
 </body>
 </html>

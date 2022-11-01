@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonCreator.Mode"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+</qualifiedTypeNameHistroy>

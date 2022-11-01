@@ -19,7 +19,7 @@ public class HomeController {
 	        model.addAttribute("item", itemName);
 	        model.addAttribute("price", price);
 	        model.addAttribute("desc", description);
-	        model.addAttribute("vedor", vendor);
+	        model.addAttribute("vendor", vendor);
 	        
 	        return "index.jsp";
 	    }

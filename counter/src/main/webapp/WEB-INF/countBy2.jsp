@@ -6,13 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Counter by two</title>
 </head>
 <body>
-<h1>Welcome User!</h1>
+<h1>This page visits count by two</h1>
 <a href="/counter/">Counter Page</a>
-<a href="/two/">Increment by 2 Page</a>
+<a href="/">Home Page</a>
 <a href="/reset/">Reset counter</a>
-
 </body>
 </html>

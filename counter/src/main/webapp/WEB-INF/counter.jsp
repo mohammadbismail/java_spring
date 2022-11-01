@@ -10,6 +10,9 @@
 </head>
 <body>
 <h1>You have visited <a href="/">local host</a> <c:out value="${count}"></c:out> times.</h1>
-<a href="/">Test another visit</a>
+<a href="/">Home page</a>
+<a href="/two/">Increment by 2 page</a>
+<a href="/reset/">Reset counter</a>
+
 </body>
 </html>

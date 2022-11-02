@@ -35,7 +35,7 @@
                         <input type="text" class="form-control" name="hobby" />
                     </div>
                     <div class="col-6 mb-3">
-                        <label for="desc">Enter hobby</label>
+                        <label for="desc">Enter Description</label>
                         <input type="text" class="form-control" name="desc" />
                     </div>
                 </div>

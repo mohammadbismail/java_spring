@@ -49,11 +49,14 @@ public class BookApi {
     		@RequestParam(value="description") String desc,
     		@RequestParam(value="language") String lang,
     		@RequestParam(value="pages") Integer numOfPages) {
+			//Get book from database using Service help
 			Book book = bookService.findBook(id);
+			// Update book member variables 
 			book.setTitle(title);
 			book.setDescription(desc);
 			book.setLanguage(lang);
 			book.setNumberOfPages(500);
+			// save this same book back to DB
 			return bookService.updateBook(id);
 			
     }

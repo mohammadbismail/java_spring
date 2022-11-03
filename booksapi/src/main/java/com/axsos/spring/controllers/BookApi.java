@@ -51,7 +51,7 @@ public class BookApi {
     		@RequestParam(value="pages") Integer numOfPages) {
 			//Get book from database using Service help
 			Book book = bookService.findBook(id);
-			// Update book member variables 
+			// Update book member variables
 			book.setTitle(title);
 			book.setDescription(desc);
 			book.setLanguage(lang);

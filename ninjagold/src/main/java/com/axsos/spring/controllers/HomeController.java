@@ -56,7 +56,7 @@ public class HomeController {
 			earn = "lost";
 			color = "text-danger";
 		}
-		String message = "<p class='"+color+"'>You have earned a place and"+earn+"a"+randNumQuest+"gold</p>";
+		String message = "<p class='"+color+"'>You have earned a place and "+earn+"a "+randNumQuest+" gold</p>";
 //		String message = String.format("<p class=%s> You have earned a place and %s a %d gold </p>",color,earn,randNumQuest);
 		updates.add(message);
 		session.setAttribute("gold", totalGold);

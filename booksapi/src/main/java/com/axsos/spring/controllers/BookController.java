@@ -23,4 +23,10 @@ public class BookController {
 		model.addAttribute("book", bookServ.findBook(bookId));
 		return "index.jsp";
 	}
+	@GetMapping("/books")
+	public String getBooks(Model model) {
+		model.addAttribute("books",bookServ.allBooks());
+//		System.out.println(bookServ.allBooks());
+		return "books.jsp";
+	}
 }

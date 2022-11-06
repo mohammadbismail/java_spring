@@ -25,7 +25,7 @@ public class Travel {
 		private long id;
 		
 		@NotNull(message="expense cant be blank")
-		@Size(min= 5,max= 100)
+		@Size(min= 5,max= 100, message="expense should be min 5 char")
 		private String expense;
 		
 		@NotNull(message="vendor cant be blank")
@@ -107,7 +107,11 @@ public class Travel {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		
+
+		public long getId() {
+			return id;
+		}
+
 		
 		
 }

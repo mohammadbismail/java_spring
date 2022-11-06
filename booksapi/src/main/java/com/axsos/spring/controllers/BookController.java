@@ -26,7 +26,6 @@ public class BookController {
 	@GetMapping("/books")
 	public String getBooks(Model model) {
 		model.addAttribute("books",bookServ.allBooks());
-//		System.out.println(bookServ.allBooks());
 		return "books.jsp";
 	}
 }

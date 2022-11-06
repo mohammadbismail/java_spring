@@ -20,16 +20,24 @@
 				<td>Expense</td>
 				<td>Vendor</td>
 				<td>Amount</td>
+				<td>Action</td>
+				<td>Delete</td>
 			</tr>
 		</thead>
 
 		<tbody>
 		<c:forEach var="trip" items="${travels}">
 			<tr>
-				<td><c:out value="${trip.expense}"></c:out></td>
+				<td><a href="/expenses/${trip.id}"><c:out value="${trip.expense}"></c:out></a></td>
 				<td><c:out value="${trip.vendor}"></c:out></td>
-				<td><c:out value="${trip.description}"></c:out></td>
 				<td><c:out value="${trip.price}"></c:out></td>
+				<td><a href="/expenses/edit/${trip.id}/">Edit</a></td>
+				<td>
+				<form action="/expenses/delete/${trip.id}/" method="post">
+				    <input type="hidden" name="_method" value="delete">
+				<input type="submit" value="Delete" />
+				</form>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

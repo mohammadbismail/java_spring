@@ -35,9 +35,9 @@ public class Book {
 	@Min(100)
 	private Integer numberOfPages;
 	@Column(updatable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd','HH:mm")
 	private Date createdAt;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd','HH:mm")
 	private Date updatedAt;
 	
 	//Constructors

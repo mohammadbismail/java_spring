@@ -1,0 +1,12 @@
+@charset "UTF-8";
+body {
+  background: url("/img/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: black;
+  background-color: #333;
+  font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
+}
+

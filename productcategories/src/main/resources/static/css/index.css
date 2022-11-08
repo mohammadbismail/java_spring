@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+*{
+	margin:0;
+	padding:0
+}
+.container{
+	display:flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.cont-prod,
+.cont-categ{
+	border: 2px solid blue;
+}

@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+body{
+	margin: 0 20%;
+	padding: 5% 0;
+}
+.reglog {
+	display: flex;
+	justify-content: space-around;
+	padding-top: 10%;
+}

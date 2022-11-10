@@ -123,15 +123,23 @@ public class MainController {
 	@GetMapping("/books/edit/{bookid}")
 		public String editpage(@PathVariable("bookid") Long bookid,Model model,HttpSession session) {
 		model.addAttribute("bookToEdit", bookServ.findBook(bookid));
+//		User myuser = (User) session.getAttribute("user");
+//		model.addAttribute("currentUser", myuser);
+//		System.out.println("current user is"+myuser.getUsername());
 			return "edit.jsp";
 		}
-	@PutMapping("/books/editbook/")
-	public String editThisBook(@Valid @ModelAttribute("bookToEdit") Book book, BindingResult result,HttpSession session) {
+	@PutMapping("/books/editbook/{bookid}")
+	public String editThisBook( @Valid @ModelAttribute("bookToEdit") Book book, BindingResult result,@PathVariable("bookid") Long bookid, HttpSession session) {
+		User myUser = (User) session.getAttribute("user");
+		Book bookFromDB = bookServ.findBook(bookid);
+		System.out.println(result);
+		System.out.println("id before "+bookid);
 		if (result.hasErrors()) {
+			System.out.println("id after "+bookid);
 			return "edit.jsp";
 		}
-		User userFromSession =(User) session.getAttribute("user");
-		bookServ.updateBook(book, userFromSession );
+
+		bookServ.updateBook(bookFromDB.getId(), book,myUser);
 		return "redirect:/books";
 		
 	}

@@ -35,7 +35,11 @@ public class BookServ {
 		return bookRepo.save(book);
 	}
 	
-//	public Book updateBook(Book book) {
-//		
-//	}
+	public Book updateBook(Book book,User userFromSession) {
+			book.setUser(userFromSession);
+		return bookRepo.save(book);
+	}
+	public void deleteBook(Long bookid) {
+		bookRepo.deleteById(bookid);
+	}
 }

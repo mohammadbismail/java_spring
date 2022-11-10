@@ -18,38 +18,38 @@
 		<form:form action="/register/" method="post" modelAttribute="newUser">
 			<h2>Register</h2>
 			<div>
-			<form:errors path="username"></form:errors>
 			<form:label path="username">User Name:</form:label>
 			<form:input path="username"></form:input>
+			<form:errors path="username"></form:errors>
 		</div>
 		<div>
-			<form:errors path="email"></form:errors>
 			<form:label path="email">Email:</form:label>
 			<form:input type="email" path="email"></form:input>
+			<form:errors path="email"></form:errors>
 		</div>
 		<div>
-			<form:errors path="password"></form:errors>
 			<form:label path="password">Password:</form:label>
 			<form:input type="password" path="password"></form:input>
+			<form:errors path="password"></form:errors>
 		</div>
 		<div>
-			<form:errors path="confirm"></form:errors>
 			<form:label path="confirm">Confirm Password:</form:label>
 			<form:input type="password" path="confirm"></form:input>
+			<form:errors path="confirm"></form:errors>
 		</div>
 		<input type="submit" value="Register" />
 		</form:form>
 		<form:form action="/login/" method="post" modelAttribute="newLogin">
 			<h2>Log In</h2>
 			<div>
-				<form:errors path="email"></form:errors>
 				<form:label path="email">Email:</form:label>
 				<form:input type="email" path="email"></form:input>
+				<form:errors path="email"></form:errors>
 			</div>
 			<div>
-				<form:errors path="password"></form:errors>
 				<form:label path="password">Password:</form:label>
 				<form:input type="password" path="password"></form:input>
+				<form:errors path="password"></form:errors>
 			</div>
 			<input type="submit" value="Login" />
 		</form:form>

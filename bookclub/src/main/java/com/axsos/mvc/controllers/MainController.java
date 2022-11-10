@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.axsos.mvc.models.Book;
@@ -28,7 +31,7 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String loginRegistration(HttpSession session, Model model) {
-		if (session.getAttribute("user_object")!= null) {
+		if (session.getAttribute("user")!= null) {
 			return "redirect:/books";
 		}
 		model.addAttribute("newUser", new User());
@@ -74,16 +77,16 @@ public class MainController {
 			session.setAttribute("logged_in",true);
 			return "redirect:/books";
 		}
-		
 	}
 	@GetMapping("/books")
 	public String sucesspage(HttpSession session, Model model) {
-		User myUser =(User) session.getAttribute("user");
-		model.addAttribute("loggedUser",userServ.findUserById(myUser.getId()));
-		System.out.println(userServ.findUserById(myUser.getId()).getUsername());
+		if (session.getAttribute("user") != null) {
+		User userFromSession =(User) session.getAttribute("user");
+		User userFromDB = userServ.findUserById(userFromSession.getId());
+		model.addAttribute("loggedUser",userFromDB);
 		model.addAttribute("allbooks", bookServ.allBooks());
-		
-		return "books.jsp";
+		}
+		return "books.jsp";		
 	}
 	
 	@GetMapping("/logout")
@@ -101,8 +104,36 @@ public class MainController {
 		if(result.hasErrors()) {
 			return "addbook.jsp";
 		}
-		System.out.println((User)session.getAttribute("user"));
+//		System.out.println((User)session.getAttribute("user"));
 		bookServ.createBook(book,(User)session.getAttribute("user"));
 		return "redirect:/books";
 	}
+	@GetMapping("/books/{bookid}")
+		public String bookView(@PathVariable("bookid") Long bookid, HttpSession session,Model model) {
+			model.addAttribute("bookFromDB", bookServ.findBook(bookid));
+			model.addAttribute("userFromSession", (User)session.getAttribute("user"));
+			
+			return "book.jsp";
+		}
+	@DeleteMapping("/books/delete")
+	public String deleteThatBook(@RequestParam("bookid") Long bookid, HttpSession session) {
+		bookServ.deleteBook(bookid);
+		return "redirect:/books";
+	}
+	@GetMapping("/books/edit/{bookid}")
+		public String editpage(@PathVariable("bookid") Long bookid,Model model,HttpSession session) {
+		model.addAttribute("bookToEdit", bookServ.findBook(bookid));
+			return "edit.jsp";
+		}
+	@PutMapping("/books/editbook/")
+	public String editThisBook(@Valid @ModelAttribute("bookToEdit") Book book, BindingResult result,HttpSession session) {
+		if (result.hasErrors()) {
+			return "edit.jsp";
+		}
+		User userFromSession =(User) session.getAttribute("user");
+		bookServ.updateBook(book, userFromSession );
+		return "redirect:/books";
+		
+	}
 }
+

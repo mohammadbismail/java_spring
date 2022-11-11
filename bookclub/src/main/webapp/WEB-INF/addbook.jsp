@@ -17,6 +17,7 @@
 <p><a href="/books/">Back to Shelf</a></p>
 </header>
 <form:form action="/books/create" method="post" modelAttribute="book">
+<form:input type="hidden" path="user" value="${user.id}"></form:input>
 <div>
 <form:label path="title">Title</form:label>
 <form:input type="text" path="title"></form:input>

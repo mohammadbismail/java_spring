@@ -15,8 +15,9 @@
 <h1>Change your entry</h1>
 <p><a href="/books/">Back to Shelf</a></p>
 </header>
-<form:form action="/books/editbook/${bookToEdit.id}/" method="post" modelAttribute="bookToEdit">
+<form:form action="/books/editbook/${bookBeforeEdit.id}/" method="post" modelAttribute="bookBeforeEdit">
 <input type="hidden" name="_method" value="put">
+<form:input type="hidden" path="user" value="${user.id}"></form:input>
 <div>
 <form:label path="title">Title</form:label>
 <form:input type="text" path="title"></form:input>

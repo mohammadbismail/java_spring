@@ -30,19 +30,21 @@ public class BookServ {
 			return null;
 		}
 	}
-	public Book createBook(Book book, User user) {
-		book.setUser(user);
+	public Book createBook(Book book) {
 		return bookRepo.save(book);
 	}
 	
-	public Book updateBook(Long bookFromDbid,Book editedBook, User myUser) {
-		Book book = findBook(bookFromDbid);
-		book.setUser(myUser);
-		book.setTitle(editedBook.getTitle());
-		book.setAuthor(editedBook.getAuthor());
-		book.setThoughts(editedBook.getThoughts());
-		return bookRepo.save(book);		
-		}
+	public Book updateBook(Book book) {
+		return bookRepo.save(book);
+	}
+//	public Book updateBook(Long bookFromDbid,Book editedBook, User myUser) {
+//		Book book = findBook(bookFromDbid);
+//		book.setUser(myUser);
+//		book.setTitle(editedBook.getTitle());
+//		book.setAuthor(editedBook.getAuthor());
+//		book.setThoughts(editedBook.getThoughts());
+//		return bookRepo.save(book);		
+//		}
 		
 	public void deleteBook(Long bookid) {
 		bookRepo.deleteById(bookid);

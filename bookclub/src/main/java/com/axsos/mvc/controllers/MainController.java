@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.axsos.mvc.models.Book;
@@ -93,10 +94,13 @@ public class MainController {
 	public String logout(HttpSession session) {
 		session.setAttribute("user", null);
 		session.setAttribute("logged_in", false);
+//		session.invalidate();
 		return "redirect:/";
 	}
 	@GetMapping("/books/new")
 	public String addBook(@ModelAttribute("book") Book book, HttpSession session, Model model) {
+		User userFromSession = (User) session.getAttribute("user");
+		model.addAttribute("user", userServ.findUserById(userFromSession.getId()));
 		return "addbook.jsp";
 	}
 	@PostMapping("/books/create")
@@ -104,44 +108,39 @@ public class MainController {
 		if(result.hasErrors()) {
 			return "addbook.jsp";
 		}
-//		System.out.println((User)session.getAttribute("user"));
-		bookServ.createBook(book,(User)session.getAttribute("user"));
+		bookServ.createBook(book);
 		return "redirect:/books";
 	}
 	@GetMapping("/books/{bookid}")
-		public String bookView(@PathVariable("bookid") Long bookid, HttpSession session,Model model) {
+		public String bookView(@PathVariable("bookid") Long bookid,Model model,HttpSession session) {
 			model.addAttribute("bookFromDB", bookServ.findBook(bookid));
 			model.addAttribute("userFromSession", (User)session.getAttribute("user"));
 			
 			return "book.jsp";
 		}
+	@GetMapping("/books/edit/{bookid}")
+		public String editpage(@PathVariable("bookid") Long bookid,Model model) {
+		Book bookBeforeEdit = bookServ.findBook(bookid);
+		model.addAttribute("bookBeforeEdit",bookBeforeEdit);
+			return "edit.jsp";
+		}
+	@PutMapping("/books/editbook/{bookid}")
+	public String editThisBook( @Valid @ModelAttribute("bookBeforeEdit") Book bookAfterEdit ,BindingResult result,Model model) {
+//		User myUser = (User) session.getAttribute("user");
+//		Book notEditidBook  = bookServ.findBook(bookid);
+		if (result.hasErrors()) {
+			model.addAttribute("bookBeforeEdit", bookAfterEdit);
+			return "edit.jsp";
+		}
+//		bookServ.updateBook(notEditidBook.getId(), bookAfterEdit,myUser);
+		bookServ.updateBook(bookAfterEdit);
+		return "redirect:/books";
+		
+	}
 	@DeleteMapping("/books/delete")
 	public String deleteThatBook(@RequestParam("bookid") Long bookid, HttpSession session) {
 		bookServ.deleteBook(bookid);
 		return "redirect:/books";
-	}
-	@GetMapping("/books/edit/{bookid}")
-		public String editpage(@PathVariable("bookid") Long bookid,Model model,HttpSession session) {
-		model.addAttribute("bookToEdit", bookServ.findBook(bookid));
-//		User myuser = (User) session.getAttribute("user");
-//		model.addAttribute("currentUser", myuser);
-//		System.out.println("current user is"+myuser.getUsername());
-			return "edit.jsp";
-		}
-	@PutMapping("/books/editbook/{bookid}")
-	public String editThisBook( @Valid @ModelAttribute("bookToEdit") Book book, BindingResult result,@PathVariable("bookid") Long bookid, HttpSession session) {
-		User myUser = (User) session.getAttribute("user");
-		Book bookFromDB = bookServ.findBook(bookid);
-		System.out.println(result);
-		System.out.println("id before "+bookid);
-		if (result.hasErrors()) {
-			System.out.println("id after "+bookid);
-			return "edit.jsp";
-		}
-
-		bookServ.updateBook(bookFromDB.getId(), book,myUser);
-		return "redirect:/books";
-		
 	}
 }
 

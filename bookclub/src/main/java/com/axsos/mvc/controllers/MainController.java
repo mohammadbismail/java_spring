@@ -94,7 +94,7 @@ public class MainController {
 	public String logout(HttpSession session) {
 		session.setAttribute("user", null);
 		session.setAttribute("logged_in", false);
-//		session.invalidate();
+		session.invalidate();
 		return "redirect:/";
 	}
 	@GetMapping("/books/new")
@@ -121,19 +121,21 @@ public class MainController {
 	@GetMapping("/books/edit/{bookid}")
 		public String editpage(@PathVariable("bookid") Long bookid,Model model) {
 		Book bookBeforeEdit = bookServ.findBook(bookid);
+		System.out.println(bookBeforeEdit.getUser().getUsername()+bookBeforeEdit.getTitle());
 		model.addAttribute("bookBeforeEdit",bookBeforeEdit);
 			return "edit.jsp";
 		}
 	@PutMapping("/books/editbook/{bookid}")
-	public String editThisBook( @Valid @ModelAttribute("bookBeforeEdit") Book bookAfterEdit ,BindingResult result,Model model) {
-//		User myUser = (User) session.getAttribute("user");
-//		Book notEditidBook  = bookServ.findBook(bookid);
+	public String editThisBook( @Valid @ModelAttribute("bookBeforeEdit") Book bookAfterEdit ,BindingResult result,Model model,HttpSession session, @PathVariable("bookid") Long bookid) {
+		User myUser = (User) session.getAttribute("user");
+		Book notEditidBook  = bookServ.findBook(bookid);
+		System.out.println(bookAfterEdit.getUser().getUsername()+bookAfterEdit.getTitle());
 		if (result.hasErrors()) {
 			model.addAttribute("bookBeforeEdit", bookAfterEdit);
+			model.addAttribute("user", myUser);
 			return "edit.jsp";
 		}
-//		bookServ.updateBook(notEditidBook.getId(), bookAfterEdit,myUser);
-		bookServ.updateBook(bookAfterEdit);
+		bookServ.updateBook(notEditidBook.getId(), bookAfterEdit,myUser);
 		return "redirect:/books";
 		
 	}

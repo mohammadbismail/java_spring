@@ -131,10 +131,10 @@ public class MainController {
 			Model model, HttpSession session, @PathVariable("bookid") Long bookid) {
 		User myUser = (User) session.getAttribute("user");
 		Book notEditidBook = bookServ.findBook(bookid);
-		System.out.println(bookAfterEdit.getUser().getUsername() + bookAfterEdit.getTitle());
+//		System.out.println(bookAfterEdit.getUser().getUsername() + bookAfterEdit.getTitle());
 		if (result.hasErrors()) {
-			model.addAttribute("bookBeforeEdit", bookAfterEdit);
-			model.addAttribute("user", myUser);
+//			model.addAttribute("bookBeforeEdit", notEditidBook);
+//			model.addAttribute("user", myUser);
 			return "edit.jsp";
 		}
 		bookServ.updateBook(notEditidBook.getId(), bookAfterEdit, myUser);

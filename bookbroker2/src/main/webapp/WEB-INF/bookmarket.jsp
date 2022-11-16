@@ -92,11 +92,14 @@
  <td>
  <c:set var="bookDB" value="${book}"/>
  <c:set var="user" value="${loggedUser}"/>
- <c:if test="${borrowedBooks.size() != 0 }">
+ <c:if test="${loggedUser.id == book.borrower.id}">
   <form action="/books/return/${book.id}/" method="post">
  <input type="hidden" name="_method" value="put"/>
 <input type="submit" value="Return" />
  </form>
+ </c:if>
+ <c:if test="${loggedUser.id != book.borrower.id}">
+ <p>Borrowed by <c:out value="${book.borrower.username}"></c:out></p>
  </c:if>
  </td>
  </tr>

@@ -154,6 +154,7 @@ public class MainController {
 		model.addAttribute("loggedUser", userServ.findUserById(currentUser.getId()));
 		model.addAttribute("availableBooks", bookServ.findAvailableBooks());
 		model.addAttribute("borrowedBooks", bookServ.findAllBorrowedBooks());
+
 		System.out.println(bookServ.findAllBorrowedBooks());
 		return "bookmarket.jsp";
 	}

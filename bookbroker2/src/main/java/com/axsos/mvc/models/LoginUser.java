@@ -1,10 +1,5 @@
 package com.axsos.mvc.models;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;

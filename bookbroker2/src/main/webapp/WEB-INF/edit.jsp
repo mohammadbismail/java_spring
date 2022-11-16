@@ -24,14 +24,14 @@
 <form:errors path="title"></form:errors>
 </div>
 <div>
-<form:label path="author">Author</form:label>
-<form:input type="text" path="author"></form:input>
-<form:errors path="author"></form:errors>
+<form:label path="description">Project Description</form:label>
+<form:textarea path="description"></form:textarea>
+<form:errors path="description"></form:errors>
 </div>
 <div>
-<form:label path="thoughts">My Thoughts</form:label>
-<form:textarea path="thoughts"></form:textarea>
-<form:errors path="thoughts"></form:errors>
+<form:label path="dueDate">Due Date</form:label>
+<form:input type="date" path="dueDate"></form:input>
+<form:errors path="dueDate"></form:errors>
 </div>
 <input type="submit" value="Submit!" />
 
